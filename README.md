@@ -23,22 +23,22 @@ Centralizes corporate directory management through an authenticated dashboard. E
 
 ## ✨ Key Features
 
-- **Admin Authentication**: Pre-configured login system with registration disabled[cite: 1].
-- **Automated Database Seeding**: Pre-seeds default administrator credentials[cite: 1].
-- **Company CRUD**: Full management of company name, email, website, and logo upload[cite: 1].
-- **Image Dimension Validation**: Automatically checks logos to enforce minimum 100x100px dimensions[cite: 1].
-- **Employee CRUD**: Manages first name, last name, company foreign key, email, and phone[cite: 1].
-- **10-per-Page Pagination**: Standardized pagination on both resource lists[cite: 1].
+- **Admin Authentication**: Pre-configured login system with registration disabled.
+- **Automated Database Seeding**: Pre-seeds default administrator credentials.
+- **Company CRUD**: Full management of company name, email, website, and logo upload.
+- **Image Dimension Validation**: Automatically checks logos to enforce minimum 100x100px dimensions.
+- **Employee CRUD**: Manages first name, last name, company foreign key, email, and phone.
+- **10-per-Page Pagination**: Standardized pagination on both resource lists.
 - **API Endpoint**: JSON endpoint returning company profile, employee list, and `employee_count`[cite: 1].
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Backend**: Laravel (PHP)[cite: 1]
-- **Frontend**: Blade, Tailwind CSS, Alpine.js[cite: 1]
-- **Database**: MySQL[cite: 1]
-- **API Testing**: Postman[cite: 1]
+- **Backend**: Laravel (PHP)
+- **Frontend**: Blade, Tailwind CSS, Alpine.js
+- **Database**: MySQL
+- **API Testing**: Postman
 
 ---
 
@@ -49,15 +49,15 @@ mini-crm/
 ├── app/
 │   ├── Http/
 │   │   ├── Controllers/
-│   │   │   ├── Api/CompanyController.php   # API endpoint
-│   │   │   ├── CompanyController.php       # Company resource controller
-│   │   │   └── EmployeeController.php      # Employee resource controller
-│   │   ├── Requests/                       # Validation rules
+│   │   │   ├── Api/CompanyController.php   # API endpoint (Step 8)
+│   │   │   ├── CompanyController.php       # Company resource controller (Step 6)
+│   │   │   └── EmployeeController.php      # Employee resource controller (Step 6)
+│   │   ├── Requests/                       # Validation rules (Step 5)
 │   │   │   ├── StoreCompanyRequest.php
 │   │   │   ├── UpdateCompanyRequest.php
 │   │   │   ├── StoreEmployeeRequest.php
 │   │   │   └── UpdateEmployeeRequest.php
-│   │   └── Resources/                      # JSON resources
+│   │   └── Resources/                      # JSON resources (Step 8)
 │   │       ├── CompanyResource.php
 │   │       └── EmployeeResource.php
 │   └── Models/
@@ -69,7 +69,7 @@ mini-crm/
 │   └── seeders/
 │       ├── DatabaseSeeder.php
 │       └── AdminUserSeeder.php             # Seeds admin@admin.com
-├── resources/views/                        # Blade views & components
+├── resources/views/                        # Blade views & components (Step 7)
 │   ├── companies/
 │   ├── employees/
 │   └── layouts/
