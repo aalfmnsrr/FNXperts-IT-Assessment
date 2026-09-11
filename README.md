@@ -1,59 +1,79 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Mini-CRM System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A full-stack Laravel administration portal built for the FNXPERTS Web Developer Assessment. Manages companies and employees with image validation, Eloquent relationships, and a RESTful API.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🎯 The Purpose
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Centralizes corporate directory management through an authenticated dashboard. Enforces schema integrity across companies and their staff while exposing endpoints for external integrations.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## ⚙️ How It Works
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+1. **Authentication Guard**: Protects routes with session-based authentication while disabling public self-registration.
+2. **Relational Data Mapping**: Links `Company` has-many `Employees` and `Employee` belongs-to `Company` with cascading integrity.
+3. **Form Request Validation**: Validates name fields, email formats, and restricts company logos to minimum dimensions of 100x100px.
+4. **Public Storage Pipeline**: Stores uploaded logos under `storage/app/public/logos` and surfaces them via the `public/storage` symlink.
+5. **Data Pagination**: Paginates company and employee listings at 10 records per page.
+6. **API Transformation**: Exposes an endpoint returning a single company with its employees and an aggregated `employee_count` attribute.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## ✨ Key Features
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- **Admin Authentication**: Pre-configured login system with registration disabled.
+- **Automated Database Seeding**: Pre-seeds default administrator credentials.
+- **Company CRUD**: Full management of company name, email, website, and logo upload.
+- **Image Dimension Validation**: Automatically checks logos to enforce minimum 100x100px dimensions.
+- **Employee CRUD**: Manages first name, last name, company foreign key, email, and phone.
+- **10-per-Page Pagination**: Standardized pagination on both resource lists.
+- **API Endpoint**: JSON endpoint returning company profile, employee list, and `employee_count`.
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## 🛠️ Tech Stack
 
-## Contributing
+- **Backend**: Laravel (PHP)
+- **Frontend**: Blade, Tailwind CSS, Alpine.js
+- **Database**: MySQL
+- **API Testing**: Postman
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## 📂 Project Structure
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```text
+mini-crm/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── Api/CompanyController.php   # API endpoint (Step 8)
+│   │   │   ├── CompanyController.php       # Company resource controller (Step 6)
+│   │   │   └── EmployeeController.php      # Employee resource controller (Step 6)
+│   │   ├── Requests/                       # Validation rules (Step 5)
+│   │   │   ├── StoreCompanyRequest.php
+│   │   │   ├── UpdateCompanyRequest.php
+│   │   │   ├── StoreEmployeeRequest.php
+│   │   │   └── UpdateEmployeeRequest.php
+│   │   └── Resources/                      # JSON resources (Step 8)
+│   │       ├── CompanyResource.php
+│   │       └── EmployeeResource.php
+│   └── Models/
+│       ├── Company.php                     # hasMany employees, logo_url accessor
+│       ├── Employee.php                    # belongsTo company
+│       └── User.php                        # Admin model
+├── database/
+│   ├── migrations/                         # Companies & employees schemas
+│   └── seeders/
+│       ├── DatabaseSeeder.php
+│       └── AdminUserSeeder.php             # Seeds admin@admin.com
+├── resources/views/                        # Blade views & components (Step 7)
+│   ├── companies/
+│   ├── employees/
+│   └── layouts/
+├── routes/
+│   ├── api.php                             # API route: /api/companies/{id}
+│   └── web.php                             # Resource routes
+└── storage/app/public/logos/               # Uploaded logos
