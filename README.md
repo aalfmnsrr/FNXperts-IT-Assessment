@@ -29,7 +29,7 @@ Centralizes corporate directory management through an authenticated dashboard. E
 - **Image Dimension Validation**: Automatically checks logos to enforce minimum 100x100px dimensions.
 - **Employee CRUD**: Manages first name, last name, company foreign key, email, and phone.
 - **10-per-Page Pagination**: Standardized pagination on both resource lists.
-- **API Endpoint**: JSON endpoint returning company profile, employee list, and `employee_count`[cite: 1].
+- **API Endpoint**: JSON endpoint returning company profile, employee list, and `employee_count`.
 
 ---
 
